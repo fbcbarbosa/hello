@@ -13,3 +13,16 @@ pipeline:
     commands:
       - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo
 
+  tag:
+    image: alpine/git
+    commands:
+      - git tag 0.0.${DRONE_BUILD_NUMBER}
+      - |-
+        git push \
+        https://$${GITHUB_TOKEN}@github.com/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME} \
+        0.0.${DRONE_BUILD_NUMBER}
+    secrets:
+      - github_token
+    when:
+      branch: master
+
