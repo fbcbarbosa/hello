@@ -1,0 +1,15 @@
+workspace:
+  base: /go
+  path: src/github.com/fbcbarbosa/hello
+
+pipeline:
+  test:
+    image: golang:1.9-alpine
+    commands:
+      - go test .
+
+  build:
+    image: golang:1.9-alpine
+    commands:
+      - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo
+
