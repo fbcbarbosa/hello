@@ -18,7 +18,7 @@ pipeline:
       event: push
 
   publish:
-    image: plugins/docker
+    image: plugins/ecr
     repo: fbcbarbosa/hello
     when:
       event: push
