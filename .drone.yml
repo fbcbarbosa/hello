@@ -3,11 +3,11 @@ name: default
 
 steps:
 - name: build
-  image: golang
+  image: golang:1.11.4-alpine
   commands:
   - go build
 
-- name: integration
-  image: golang
+- name: test
+  image: golang:1.11.4-alpine
   commands:
   - go test
